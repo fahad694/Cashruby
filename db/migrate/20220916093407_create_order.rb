@@ -2,11 +2,11 @@ class CreateOrder < ActiveRecord::Migration[6.1]
   def change
     create_table :orders do |t|
       t.integer :customer_id
-      t.decimle :total_price
+      t.decimal :total_price
       t.integer :discount
-      t.decimle :discounted_value
-      t.decimle :after_discount
-      t.number :state
+      t.decimal :discounted_value
+      t.decimal :after_discount
+      t.string :state
 
       t.timestamps
     end
