@@ -4,8 +4,8 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.string :name
       t.decimal :price
       t.integer :quantity
-      t.integer :sub_categories_id
-      t.integer :categories_id 
+      t.integer :sub_category_id
+      t.integer :category_id 
 
       t.timestamps
     end
