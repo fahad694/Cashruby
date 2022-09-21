@@ -22,23 +22,23 @@ ActiveRecord::Schema.define(version: 2022_09_16_093800) do
     t.string "name"
     t.decimal "price", precision: 10
     t.integer "quantity"
-    t.integer "sub_categories_id"
-    t.integer "categories_id"
+    t.integer "sub_category_id"
+    t.integer "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "line_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "Item_id"
+    t.integer "item_id"
     t.integer "order_id"
-    t.text "action"
+    t.string "action"
     t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "order_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "Item_id"
+    t.integer "item_id"
     t.integer "order_id"
     t.decimal "price", precision: 10
     t.integer "quantity"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2022_09_16_093800) do
   create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "customer_id"
     t.decimal "total_price", precision: 10
-    t.integer "discount"
+    t.integer "discount_percentage"
     t.decimal "discounted_value", precision: 10
     t.decimal "after_discount", precision: 10
     t.string "state"
@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(version: 2022_09_16_093800) do
   end
 
   create_table "sub_categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "title"
-    t.integer "categories_id"
+    t.text "title"
+    t.integer "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

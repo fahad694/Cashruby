@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>all categories</title>
-</head>
-<body>
-	<ul>
-	<% @category.each do |categories| %>
-	<li>
-	<%=  categories.title %>
-	</li>
+<%= link_to 'New', new_category_path %>
+<ul>
+  <% @categories.each do |category| %>
+	  <li>
+			<%= category.title %>
+      <%= link_to 'Show', category_path(category) %>
+      <%= link_to 'Edit', edit_category_path(category) %>
+      <%= link_to 'Delete', category_path(category), method: :delete %>
+		</li>
 	<% end %>
-	</ul>
-
-</body>
-</html>
+</ul>

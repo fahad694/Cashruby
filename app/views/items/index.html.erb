@@ -1,0 +1,24 @@
+
+
+<br>
+<br>
+<br>
+<%= link_to "New", new_item_path(@item) %> 
+<br>
+<br>
+<% @items.each do |item| %>
+Item name : <%= item.name %>
+<br>
+Item quantity : <%= item.quantity %>
+<br>
+Item Price : <%= item.price %>
+<br>
+SubCategory : <%= item.sub_category.title %>
+<br>
+Categpory :<%= item.category.title %>
+<%= link_to "Show", item_path(item) %>
+<%= link_to "Edit", edit_item_path(item) %>
+<%= link_to "Delete",item_path(item), method: :delete %>
+<br>
+<br>
+<% end %>
