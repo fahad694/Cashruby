@@ -9,18 +9,49 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+    <%= javascript_include_tag('/token_input') %>
   <title>Cash2Deals</title>
 </head>
 <body>
   <br>
   <br>
  
+  <input type="text" name="search" id="js-search">
+  <script type="text/javascript">
+    var tf = new Tokenfield({
+      el: document.querySelector('#js-search'),
+      remote: {
+        url: "/items/search.json",
+      }
+    });
+
+
+    // var tf = new Tokenfield({
+    //   el: document.querySelector('#js-search'),
+    //   items: [
+    //     {id: 1, name: 'red'},
+    //     {id: 2, name:'orange'},
+    //     {id: 3, name: 'yellow'},
+    //     {id: 4, name: 'green'},
+    //     {id: 5, name:'blue'},
+    //     {id: 6, name: 'indigo'},
+    //     {id: 7, name: 'violet'},
+    //     {id: 8, name: 'black'},
+    //     {id: 9, name: 'white'},
+    //     {id: 10, name: 'brown'},
+    //     {id: 11, name: 'pink'}
+    //   ],
+    //   newItems: false
+    // });
+  </script>
+
   <nav class="navbar">
   
     <%= link_to "Home", root_path, class: 'navbar_logo' %>
 
      <%= link_to "Categories", categories_path, class: 'category' %>
      <%= link_to "SubCategory", sub_categories_path, class: 'subcategory' %>
+     <%= link_to "Order", new_order_path, class: 'order' %>
      
     </nav>
   <br>

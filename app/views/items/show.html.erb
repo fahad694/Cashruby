@@ -3,3 +3,31 @@
 <%= @item.quantity %>
 <%= @item.sub_category.title %>
 <%= @item.category.title %>
+<br>
+<br>
+
+<%= form_with url: add_stock_item_path(@item) do |form| %>
+<br> 
+ <br>
+ <%= form.label :quantity, "Quantity"%>
+  <%= form.number_field :quantity %>
+  <%= form.submit "Add stock" %>
+  <% end %>
+  <br>
+  <br>
+  <br>
+<%= form_with url: remove_stock_item_path(@item) do |form| %>
+<br> 
+ <br>
+ <%= form.label :quantity, "Quantity"%>
+  <%= form.number_field :quantity %>
+  <%= form.submit "remove stock" %>
+  <% end %>
+<br>
+<br>
+<br> 
+  <% @lineitems.each do |items|%>
+<p>item</p>
+  <%= items.item.name %>
+  <%= items.quantity %>
+  <% end %>

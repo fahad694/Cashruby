@@ -36,7 +36,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       format.html
-      redirect_to categories_path
+
     end
   end
 
