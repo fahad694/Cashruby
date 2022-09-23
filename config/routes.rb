@@ -10,5 +10,7 @@ root "items#index"
     post :remove_stock, on: :member
   end
   resources :users
-  resources :orders
+  resources :orders do
+    post :commit_order, on: :member
+  end
 end

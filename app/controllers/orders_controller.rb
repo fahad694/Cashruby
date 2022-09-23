@@ -14,6 +14,9 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @items = Item.all
+  end
+
+  def commit_order
     binding.pry
   end
 

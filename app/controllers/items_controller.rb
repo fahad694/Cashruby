@@ -10,8 +10,7 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
   def create
-    @item = Item.create(item_params)
-    
+    @item = Item.create(item_params) 
     @lineitem = LineItem.create(quantity: params.dig(:item, :quantity), item_id:@item.id)
     @item.recalculate_current_quantity
     redirect_to items_path()
@@ -63,7 +62,6 @@ class ItemsController < ApplicationController
     params_str = params[:q] 
     data = Item.where('name LIKE ?', "%#{params_str}%")
     data = data.collect { |item| {id: item.id, name: item.name } }
-    binding.pry
     respond_to do |format|
       format.json do
         render json: data, status: :ok
