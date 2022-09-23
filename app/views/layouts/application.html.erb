@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
@@ -13,22 +12,13 @@
   <title>Cash2Deals</title>
 </head>
 <body>
-  <br>
-  <br>
- <nav class="navbar">
-  
+  <nav class="navbar">
     <%= link_to "Home", root_path, class: 'navbar_logo' %>
-
      <%= link_to "Categories", categories_path, class: 'category' %>
      <%= link_to "SubCategory", sub_categories_path, class: 'subcategory' %>
      <%= link_to "Order", new_order_path, class: 'order' %>
-     
     </nav>
-  <br>
-
   <%= render partial: '/layouts/flash_messages' %>
   <%= yield %>
-  
-  
 </body>
 </html>

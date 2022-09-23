@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>category</title>
-</head>
-<body>
-	<br>
-	<br>
-	<%= form_with model: @category do |form| %>
+<br>
+<br>
+<%= form_with model: @category do |form| %>
 	<%= form.label :title, "title : " %>
 	<%= form.text_field :title %>
-	<%= form.submit "create" %>
-	<% end %>
-</body>
-</html>
+	<%= form.submit "Create" %>
+<% end %>

@@ -11,5 +11,4 @@ class Item < ApplicationRecord
     x = line_items.pluck(:quantity).sum
     self.update(quantity: x)
   end
-
 end
