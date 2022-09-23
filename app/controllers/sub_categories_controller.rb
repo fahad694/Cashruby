@@ -6,12 +6,10 @@ class SubCategoriesController < ApplicationController
   end
 
   def create
-
     @subcategory = SubCategory.create(sub_category_params)
-    
-    redirect_to sub_categories_path()
-  
+    redirect_to sub_categories_path()  
   end
+  
   def index
     @subcategories = SubCategory.all
   end

@@ -1,21 +1,21 @@
 <%= form_with model: @item do |form| %>
-<%= form.label :name, "Item name : " %>
-<%= form.text_field :name %>
-<br>
-<br>
-<%= form.label :quantity, "quantit : " %>
-<%= form.number_field :quantity %>
-<br>
-<br>
-<%= form.label :price, "Price : " %>
-<%= form.number_field :price %>
-<br>
-<br>
-<%= form.label :sub_category_id, "Select sub category :" %>
-<%= form.select(:sub_category_id, options_for_select(@subcategories.map do |subcategory|
+  <%= form.label :name, "Item name : " %>
+  <%= form.text_field :name %>
+  <br>
+  <br>
+  <%= form.label :quantity, "Quantity : " %>
+  <%= form.number_field :quantity %>
+  <br>
+  <br>
+  <%= form.label :price, "Price : " %>
+  <%= form.number_field :price %>
+  <br>
+  <br>
+  <%= form.label :sub_category_id, "Select sub category :" %>
+  <%= form.select(:sub_category_id, options_for_select(@subcategories.map do |subcategory|
   [subcategory.title, subcategory.id]  end ))%>
   <%= form.label :category_id, " Select Category :" %>
   <%= form.select(:category_id, options_for_select(@categories.map do |category|
-    [category.title, category.id] end)) %>
-    <%= form.submit "Create" %>
+  [category.title, category.id] end)) %>
+  <%= form.submit "Create" %>
 <% end %>
