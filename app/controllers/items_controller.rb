@@ -63,6 +63,7 @@ class ItemsController < ApplicationController
     params_str = params[:q] 
     data = Item.where('name LIKE ?', "%#{params_str}%")
     data = data.collect { |item| {id: item.id, name: item.name } }
+    binding.pry
     respond_to do |format|
       format.json do
         render json: data, status: :ok
