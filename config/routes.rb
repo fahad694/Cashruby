@@ -9,8 +9,11 @@ root "items#index"
     post :add_stock, on: :member
     post :remove_stock, on: :member
   end
-  resources :users
+  
   resources :orders do
-    post :commit_order, on: :member
+    post   :commit_order, on: :member
+    delete :remove_item, on: :member
+    post   :payment, on: :member
   end
+  resources :users
 end

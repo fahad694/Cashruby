@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_16_093800) do
+ActiveRecord::Schema.define(version: 2022_09_26_142743) do
 
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(version: 2022_09_16_093800) do
     t.decimal "discounted_value", precision: 10
     t.decimal "after_discount", precision: 10
     t.string "state"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.decimal "paid_amount", precision: 10
+  end
+
+  create_table "payments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "order_id"
+    t.decimal "paid_amount", precision: 10
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

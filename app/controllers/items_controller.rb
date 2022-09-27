@@ -70,9 +70,11 @@ class ItemsController < ApplicationController
   end
 
  private
+ 
 def load_category
     @item = Item.find(params[:id])
   end
+
   def item_params
       params.require(:item).permit(:name, :price, :sub_category_id, :category_id)
   end  
