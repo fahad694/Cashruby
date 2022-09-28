@@ -4,7 +4,6 @@ class CategoriesController < ApplicationController
   # GET categories/new
   def new
   	@category = Category.new
-
     respond_to do |format|
       format.html
     end
@@ -25,7 +24,6 @@ class CategoriesController < ApplicationController
   # GET categories/
   def index
     @categories = Category.all
-
     respond_to do |format|
       format.html
     end
@@ -33,10 +31,8 @@ class CategoriesController < ApplicationController
 
   # GET categories/:id
   def show
-
     respond_to do |format|
       format.html
-
     end
   end
 
