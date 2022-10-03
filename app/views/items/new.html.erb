@@ -12,8 +12,7 @@
   <br>
   <br>
   <%= form.label :sub_category_id, "Select sub category :" %>
-  <%= form.select(:sub_category_id, options_for_select(@subcategories.map do |subcategory|
-  [subcategory.title, subcategory.id]  end ))%>
+  <%= form.select(:sub_category_id, sub_category_options(@sub_categories)) %>
   <%= form.label :category_id, " Select Category :" %>
   <%= form.select(:category_id, options_for_select(@categories.map do |category|
   [category.title, category.id] end)) %>
