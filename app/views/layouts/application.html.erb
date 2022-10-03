@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Cashdeals</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-    <%= yield %>
-  </body>
+  <title>Cash2Deals</title>
+</head>
+<body>
+  <nav class="navbar">
+    <%= link_to "Home", root_path, class: 'navbar_logo' %>
+     <%= link_to "Categories", categories_path, class: 'navbar_logo' %>
+     <%= link_to "SubCategory", sub_categories_path, class: 'navbar_logo' %> 
+    </nav>
+  <%= render partial: '/layouts/flash_messages' %>
+  <%= yield %>
+</body>
 </html>

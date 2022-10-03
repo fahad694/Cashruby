@@ -1,0 +1,12 @@
+<br>
+<br> 
+<%= link_to 'New', new_sub_category_path %>
+  <% @sub_categories.each do | sub_category| %>
+  <p>Sub category &nbsp Category</p>
+  <%= sub_category.title %>
+  <%= sub_category.category.title %>
+  <%= link_to 'Show', sub_category_path(sub_category) %>
+  <%= link_to 'Edit', edit_sub_category_path(sub_category) %>
+  <%= link_to 'Delete',sub_category_path(sub_category),method: :delete %>
+  <br>
+<% end %>

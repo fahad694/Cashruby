@@ -1,0 +1,29 @@
+<% if flash.present? %>
+  <div>
+    <% if flash[:error].present? %>
+      <% if flash[:error].is_a?(Array) %>
+        <% flash[:error].each do |error_message| %>
+          <div>
+            <%= error_message %>
+          <div>
+        <% end %>
+      <% else %>
+        <div>
+          <%= flash[:error] %>
+        </div>
+      <% end %>
+    <% elsif flash[:notice].present? %>
+      <% if flash[:notice].is_a?(Array) %>
+        <% flash[:notice].each do |error_message| %>
+          <div>
+            <%= error_message %>
+          <div>
+        <% end %>
+      <% else %>
+        <div>
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
