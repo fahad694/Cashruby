@@ -1,11 +1,11 @@
 <%= form_with model: @subcategory do |form| %>
-<%= form.label :title, "SubCategory" %>
-<%= form.text_field :title %>
-<br>
-<%= form.label :category_id %>
-<%= form.select(:category_id, 
-  options_for_select(@categories.map do |category|
-  [category.title, category.id]
-  end )) %>
-<%= form.submit "Add" %>
+  <%= form.label :title, "SubCategory" %>
+  <%= form.text_field :title %>
+  <br>
+  <%= form.label :category_id %>
+  <%= form.select(:category_id, 
+    options_for_select(@categories.map do |category|
+    [category.title, category.id]
+    end )) %>
+  <%= form.submit "Add" %>
 <% end %>

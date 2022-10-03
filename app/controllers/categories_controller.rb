@@ -1,7 +1,8 @@
 class CategoriesController < ApplicationController
   before_action :load_category, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
-  # GET categories/new
+
+  # GET /categories/new
   def new
   	@category = Category.new
     respond_to do |format|
@@ -9,7 +10,7 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # POST categories/
+  # POST /categories
   def create
   	@category = Category.create(category_params)
     if @category.valid?
@@ -21,7 +22,7 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # GET categories/
+  # GET /categories
   def index
     @categories = Category.all
     respond_to do |format|
@@ -29,24 +30,23 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # GET categories/:id
+  # GET /categories/:id
   def show
     respond_to do |format|
       format.html
     end
   end
 
-  # GET categories/:id/edit
+  # GET /categories/:id/edit
   def edit
     respond_to do |format|
       format.html
     end
   end
 
-  # PATCH categories/:id/
+  # PATCH /categories/:id
   def update
     @category.update(category_params)
-    
     if @category.valid?
       flash[:notice] = 'Category has been updated!'
       redirect_to category_path(@category)
@@ -56,7 +56,7 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # Destroy Categories/:id/
+  # Deelete /Categories/:id
   def destroy
     load_category.destroy
     redirect_to categories_path

@@ -11,9 +11,9 @@ root "items#index"
   end
   
   resources :orders do
-    post   :commit_order, on: :member
+    post   :add_order, on: :member
     delete :remove_item, on: :member
-    post   :payment, on: :member
+    post   :charge_payment, on: :member
   end
   resources :users
 end

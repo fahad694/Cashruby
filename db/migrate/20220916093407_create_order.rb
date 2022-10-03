@@ -7,7 +7,6 @@ class CreateOrder < ActiveRecord::Migration[6.1]
       t.decimal  :discounted_value
       t.decimal  :total_discount
       t.string   :state
-      t.decimal  :paid_amount
 
       t.timestamps
     end
