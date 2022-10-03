@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   
   # GET categories/new
   def new
-  	@category = Category.new
+    @category = Category.new
     respond_to do |format|
       format.html
     end
