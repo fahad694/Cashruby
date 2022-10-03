@@ -15,16 +15,10 @@
  */
 
 .navbar {
-    background-color: lightgray;
-    height: 50px;
+  background-color: lightgray;
+  height: 50px;
 }
+
 .navbar_logo {
-    color: black;
-   
-}
-.category {
-    color: black;
-}
-.subcategory {
-    color: black;
+  color: black;  
 }

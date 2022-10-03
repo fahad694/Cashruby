@@ -2,37 +2,36 @@ class SubCategoriesController < ApplicationController
 
   def new
     @categories = Category.all
-    @subcategory = SubCategory.new
+    @sub_category = SubCategory.new
   end
 
   def create
-    @subcategory = SubCategory.create(sub_category_params)
+    @sub_category = SubCategory.create(sub_category_params)
     redirect_to sub_categories_path()  
   end
   
   def index
-    @subcategories = SubCategory.all
+    @sub_categories = SubCategory.includes(:category).all
   end
 
   def show
-    @subcategory = SubCategory.find(params[:id])
+    @sub_category = SubCategory.find(params[:id])
 
   end
 
   def edit
-    @subcategory = SubCategory.find(params[:id])
+    @sub_category = SubCategory.find(params[:id])
     @categories = Category.all
   end
 
   def update
-  @categories = Category.all
-  @subcategory = SubCategory.find(params[:id])
-  @subcategory.update(sub_category_params)
-    redirect_to sub_categories_path()
+  @sub_category = SubCategory.find(params[:id])
+  @sub_category.update(sub_category_params)
+  redirect_to sub_categories_path()
   end
   def destroy
-    @subcategory = SubCategory.find(params[:id])
-    @subcategory.destroy
+    @sub_category = SubCategory.find(params[:id])
+    @sub_category.destroy
     redirect_to sub_categories_path
   end
   private
