@@ -33,13 +33,13 @@ ActiveRecord::Schema.define(version: 2022_10_03_094152) do
 
   create_table "line_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "item_id"
-    t.integer "order_id"
+    t.integer "order_item_id"
     t.string "action"
     t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_line_items_on_item_id"
-    t.index ["order_id"], name: "index_line_items_on_order_id"
+    t.index ["order_item_id"], name: "index_line_items_on_order_item_id"
   end
 
   create_table "order_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -55,22 +55,14 @@ ActiveRecord::Schema.define(version: 2022_10_03_094152) do
 
   create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "customer_id"
-    t.decimal "total_price", precision: 10, default: "0"
+    t.decimal "total_price", precision: 10
     t.integer "discount_percentage"
     t.decimal "discounted_value", precision: 10
-    t.decimal "after_discount", precision: 10
+    t.decimal "total_discount", precision: 10
     t.string "state"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.decimal "paid_amount", precision: 10, default: "0"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
-  end
-
-  create_table "payments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "order_id"
-    t.decimal "paid_amount", precision: 10
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "sub_categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

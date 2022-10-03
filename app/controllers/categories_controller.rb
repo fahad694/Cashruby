@@ -12,12 +12,13 @@ class CategoriesController < ApplicationController
 
   # POST categories/
   def create
-  	@category = Category.create(category_params)
+    @category = Category.create(category_params)
     if @category.valid?
       flash[:notice] = 'Category has been created!'
       redirect_to category_path(@category)
     else
       flash[:error] = @category.errors.full_messages
+      render :new
     end
   end
 
@@ -31,10 +32,8 @@ class CategoriesController < ApplicationController
 
   # GET categories/:id
   def show
-
     respond_to do |format|
       format.html
-      redirect_to categories_path
     end
   end
 
@@ -53,6 +52,7 @@ class CategoriesController < ApplicationController
       redirect_to category_path(@category)
     else
       flash[:error] = @category.errors.full_messages
+      render :edit
     end
   end
 

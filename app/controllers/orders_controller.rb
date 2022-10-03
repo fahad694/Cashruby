@@ -1,2 +1,2 @@
-class OrderController < ApplicationController
+class OrdersController < ApplicationController
 end

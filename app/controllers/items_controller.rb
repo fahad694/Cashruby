@@ -4,22 +4,33 @@ class ItemsController < ApplicationController
   # GET /items
   def index
     @items = Item.all
+  
+    respond_to do |format|
+      format.html
+    end
   end
 
   # GET /items/new
   def new
-    @categories = Category.all
-    @subcategories = SubCategory.all
     @item = Item.new
+    load_data_for_form
+
+    respond_to do |format|
+      format.html
+    end
   end
 
   # POST /items
   def create
     @item = Item.create(item_params)
     if @item.valid?
-      redirect_to items_path()  
+      flash[:notice] = 'Item has been created!'
+      redirect_to item_path(@item)
+    else
+      load_data_for_form
+      flash[:error] = @item.errors.full_messages
+      render :new
     end
-    
   end
 
   # GET /items/:id
@@ -31,17 +42,25 @@ class ItemsController < ApplicationController
 
   #  GET /items/:id/edit
   def edit
-    @categories = Category.all
-    @subcategories =  SubCategory.all
+    load_data_for_form
+  
+    respond_to do |format|
+      format.html
+    end
   end
 
   #  PATCH/PUT /items/:id
   def update
-    Category.all
-    SubCategory.all
     @item.update(item_params)
+    
+
     if @item.valid?
-      redirect_to items_path()  
+      flash[:notice] = 'Item has been updated!'
+      redirect_to item_path(@item)
+    else
+      load_data_for_form
+      flash[:error] = @item.errors.full_messages
+      render :edit
     end
   end
 
@@ -59,5 +78,10 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :quantity, :price, :sub_category_id, :category_id)
-  end  
+  end
+
+  def load_data_for_form
+    @categories = Category.all
+    @sub_categories = SubCategory.all
+  end
 end

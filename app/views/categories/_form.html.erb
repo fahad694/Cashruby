@@ -1,5 +1,5 @@
 <%= form_with model: @category do |form| %>
-	<%= form.label :title,"title"%>
-	<%= form.text_field :title %>
-	<%= form.submit @category.persisted? ? 'Update' : 'Create' %>
+  <%= form.label :title, "Title" %>
+  <%= form.text_field :title %>
+  <%= form.submit @category.persisted? ? 'Update' : 'Create' %>
 <% end %>
