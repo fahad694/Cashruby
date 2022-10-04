@@ -1,6 +1,6 @@
 <% @orders.each do |order| %>
   <%= label_tag 'name', 'Name : ' %>
-  <%= order.name %>
+  <%= order.user.name %>
   <br>
   <%= label_tag 'total_price', 'Total Price : ' %>
   <%= order.total_price %>

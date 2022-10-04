@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
 
   # GET /orders
   def index
-    @orders = Order.all.includes(:customer_id)
+    @orders = Order.all.includes(:user)
     respond_to do |format|
       format.html
     end
@@ -67,13 +67,13 @@ class OrdersController < ApplicationController
   def remove_item
     @order_item = OrderItem.find(params[:order_item_id])
     @order_item.destroy!
-    if @order.valid?
+    if @order_item.destroyed?
       flash[:notice] = 'successfully Deleted'
       @order.recalculate_total_price
-      redirect_to order_path(params[:id])
+      redirect_to order_path(@order)
     else
-      flash[:notice] = @order.errors.full_messages
-      render :index
+      flash[:errors] = @order.errors.full_messages
+      redirect_to order_path(@order)
     end
     
   end

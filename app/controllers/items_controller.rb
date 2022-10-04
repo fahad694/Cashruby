@@ -57,7 +57,7 @@ class ItemsController < ApplicationController
     valid = true
     begin
       ActiveRecord::Base.transaction do 
-        LineItem.create(quantity: params[:quantity], item_id: @item.id)
+        LineItem.create!(quantity: params[:quantity], item_id: @item.id)
         @item.recalculate_current_quantity!
       end
     rescue ActiveRecord::RecordInvalid => e
@@ -69,8 +69,8 @@ class ItemsController < ApplicationController
       flash[:notice] = 'stock has been added'
       redirect_to items_path
     else
-      flash[:notice] = errors
-      render :show
+      flash[:errors] = errors
+      redirect_to items_path
     end
   end
 
@@ -80,7 +80,7 @@ class ItemsController < ApplicationController
     begin
       ActiveRecord::Base.transaction do
         item_quantity = params[:quantity].to_i * -1
-        LineItem.create(quantity: item_quantity, item_id: params[:id])
+        LineItem.create!(quantity: item_quantity, item_id: params[:id])
         @item.recalculate_current_quantity!
       end
     rescue ActiveRecord::RecordInvalid => e
@@ -117,14 +117,12 @@ class ItemsController < ApplicationController
 
   # DELETE /items/:id
   def destroy  
-    respond_to do |format|
-      format.html
-    end
-    if @item.valid?
+    @item.destroy
+    if @item.destroyed?
       flash[:notice] = 'Item successfully Deleted'
       redirect_to items_path
     else
-      flash[:notice] = @item.errors.full_messages
+      flash[:errors] = @item.errors.full_messages
       redirect_to items_path
     end
   end

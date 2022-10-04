@@ -56,7 +56,7 @@ class SubCategoriesController < ApplicationController
 
   # DELETE /subcategories/:id
   def destroy
-    @sub_category.destroy!
+    @sub_category.destroy
     if @sub_category.valid?
       flash[:notice] = 'successfull deleted'
       redirect_to sub_categories_path

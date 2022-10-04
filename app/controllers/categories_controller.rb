@@ -55,10 +55,10 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # Deelete /Categories/:id
+  # Delete /Categories/:id
   def destroy
-    @category.destroy!
-    if @category.valid?
+    @category.destroy
+    if @category.destroyed?
       flash[:notice] = 'successfull deleted'
       redirect_to categories_path
     else
