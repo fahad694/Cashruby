@@ -14,5 +14,4 @@ class Order < ApplicationRecord
     calculated_paid_amount = payments.sum(:paid_amount)
     self.update(paid_amount: calculated_paid_amount)
   end
-
 end

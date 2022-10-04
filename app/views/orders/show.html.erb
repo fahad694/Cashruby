@@ -1,16 +1,16 @@
 
-<%= form_with url: commit_order_order_path(@order) do |form| %>
+<%= form_with url: add_item_order_path(@order) do |form| %>
 
   <input type="text" name="search" id="js-search">
 
-  <script type="text/javascript">
+  <%= javascript_tag do %>
       var tf = new Tokenfield({
         el: document.querySelector('#js-search'),
         remote: {
           url: "/items/search.json",
         }
       });
-    </script>
+    <% end %>
 
   <br>
   <br>
@@ -19,7 +19,7 @@
   <%= form.number_field :quantity %>
   <br>
   <br>
-  <%= form.submit "Commit" %>
+  <%= form.submit "Add" %>
 <% end %>
 <% @order_items.each do |order_item| %>
   <table class="table_border">
@@ -49,7 +49,7 @@
 <% end %>
   <br>
   <br>
-<%= form_with url: payment_order_path(@order) do |form| %>
+<%= form_with url: charge_payment_order_path(@order) do |form| %>
 
   <%= form.label :paid_amount, "Amount : " %>
   <%= form.number_field :paid_amount%> 
@@ -64,7 +64,7 @@
   <br>
   <br>
   <%= form.label :paid_amount, "Remaining : " %>
-  <%= @order.total_price - @order.paid_amount %> 
+  <%= (@order.total_price).to_i  - (@order.paid_amount).to_i %> 
   <br>
   <br>
   <%= form.submit "Paid" %>

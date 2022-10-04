@@ -10,12 +10,22 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.create(user_params)
+    @user = User.create!(user_params)
+    if @user.valid?
+      flash[:notice] = 'successfull created'
+      redirect_to users_path
+    else
+      flash[:notice] = @user.errors.full_messages
+      render :new
+    end
   end
 
   # GET /users
   def index
     @users = User.all
+    respond_to do |format|
+      format.html
+    end
   end
 
   private

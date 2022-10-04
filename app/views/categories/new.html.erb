@@ -1,7 +1,1 @@
-<br>
-<br>
-<%= form_with model: @category do |form| %>
-	<%= form.label :title, "title : " %>
-	<%= form.text_field :title %>
-	<%= form.submit "Create" %>
-<% end %>
+<%= render partial: "form" %>

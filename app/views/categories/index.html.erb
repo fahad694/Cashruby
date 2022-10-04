@@ -1,11 +1,11 @@
 <%= link_to 'New', new_category_path %>
 <ul>
   <% @categories.each do |category| %>
-	  <li>
-			<%= category.title %>
+    <li>
+      <%= category.title %>
       <%= link_to 'Show', category_path(category) %>
       <%= link_to 'Edit', edit_category_path(category) %>
       <%= link_to 'Delete', category_path(category), method: :delete %>
-		</li>
-	<% end %>
+    </li>
+  <% end %>
 </ul>
