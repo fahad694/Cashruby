@@ -1,0 +1,32 @@
+<%= link_to "new", new_user_path %>
+<br>
+<br>
+<% @users.each do |user| %>
+  <table class="table_border">
+  <tr class="table_border">
+    <th class="table_border">Name</th>
+    <th class="table_border">Email</th>
+    <th class="table_border">Gender</th>
+    <th class="table_border">Type</th>
+  </tr>
+  <tr >
+  <td class="table_border">
+    <%= user.name %>
+  </td>
+  <td class="table_border">
+    <%= user.email %>
+  </td>
+  <td class="table_border">
+    <%= user.gender %>
+  </td>
+  <td class="table_border">
+    <%= user.type %>
+  </td>
+  <td>
+    <%= link_to "view" %>
+    <%= link_to "Edit" %>
+    <%= link_to "Delete" %>
+  </td>
+  </tr>
+  </table>
+<% end %>

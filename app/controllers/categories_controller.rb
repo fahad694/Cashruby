@@ -1,8 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :load_category, only: [ :show, :edit, :update, :destroy ]
-  skip_before_action :verify_authenticity_token
   
-  # GET categories/new
+  # GET /categories/new
   def new
     @category = Category.new
     respond_to do |format|
@@ -10,7 +9,7 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # POST categories/
+  # POST /categories
   def create
     @category = Category.create(category_params)
     if @category.valid?
@@ -22,7 +21,7 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # GET categories/
+  # GET /categories
   def index
     @categories = Category.all
     respond_to do |format|
@@ -30,21 +29,21 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # GET categories/:id
+  # GET /categories/:id
   def show
     respond_to do |format|
       format.html
     end
   end
 
-  # GET categories/:id/edit
+  # GET /categories/:id/edit
   def edit
     respond_to do |format|
       format.html
     end
   end
 
-  # PATCH categories/:id/
+  # PATCH /categories/:id
   def update
     @category.update(category_params)
     if @category.valid?
@@ -56,10 +55,16 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # Destroy Categories/:id/
+  # Delete /Categories/:id
   def destroy
     @category.destroy
-    redirect_to categories_path
+    if @category.destroyed?
+      flash[:notice] = 'successfull deleted'
+      redirect_to categories_path
+    else
+      flash[:notice] = @category.errors.full_messages
+      redirect_to categories_path   
+    end
   end
 
   private
@@ -72,5 +77,3 @@ class CategoriesController < ApplicationController
     params.require(:category).permit(:title)
   end
 end
-
-

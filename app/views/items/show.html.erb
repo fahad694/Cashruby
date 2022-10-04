@@ -1,14 +1,42 @@
-<%= label_tag 'name', 'Name' %>
-<%= @item.name %>
-<br>]
-<%= label_tag 'price', 'Price' %>
-<%= @item.price %>
+<%= label_tag 'name', 'Name : ' %>
+  <%= @item.name %>
+<br><br>
+<%= label_tag 'price', 'Price : ' %>
+  <%= @item.price %>
+<br><br>
+<%= label_tag 'quantity', 'Qunatity : ' %>
+  <%= @item.quantity %>
+<br><br>
+<%=label_tag 'sub_category_title', 'Sub category : ' %> 
+  <%= @item.sub_category.title %>
+<br><br>
+<%= label_tag 'category_title', 'Category : ' %>
+  <%= @item.category.title %>
 <br>
-<%= label_tag 'quantity', 'Qunatity' %>
-<%= @item.quantity %>
 <br>
-<%= label_tag 'sub_category_title', 'Sub category' %> 
-<%= @item.sub_category.title %>
+
+<%= form_with url: add_stock_item_path(@item) do |form| %>
+<br> 
+ <br>
+ <%= form.label :quantity, "Quantity" %>
+  <%= form.number_field :quantity %>
+  <%= form.submit "Add stock" %>
+  <% end %>
+  <br>
+  <br>
+  <br>
+<%= form_with url: remove_stock_item_path(@item) do |form| %>
+<br> 
+ <br>
+ <%= form.label :quantity, "Quantity" %>
+  <%= form.number_field :quantity %>
+  <%= form.submit "remove stock" %>
+  <% end %>
 <br>
-<%= label_tag 'category_title', 'Category' %>
-<%= @item.category.title %>
+<br>
+<br> 
+  <% @line_items.each do |items| %>
+<p>item</p>
+  <%= items.item.name %>
+  <%= items.quantity %>
+<% end %>

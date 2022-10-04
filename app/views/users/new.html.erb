@@ -1,0 +1,42 @@
+<%= form_with model: @user do |form| %>
+  <%= form.label :name, "Name: " %>
+  <%= form.text_field :name %>
+  <br>
+  <br>
+  <br>
+  <%= form.label :emal, "Email" %>
+  <%= form.text_field :email %>
+  <br>
+  <br>
+  <br>
+  <%= form.label :password, "Password: " %>
+  <%= form.text_field :password %>
+  <br>
+  <br>
+  <br>
+  <%= form.label :address, "Address: " %>
+  <%= form.text_area  :address %>
+  <br>
+  <br>
+  <br>
+  <%= form.label :date_of_birth, "Date of Birth: " %>
+  <%= form.date_field :date_of_birth %>
+  <br>
+  <br>
+  <br>
+  <%= form.label :phone, "Phone: " %>
+  <%= form.telephone_field :phone %>
+  <br>
+  <br>
+  <br>
+  <%= form.label :gender, "Gender" %>
+  <%= form.select :gender,[["Male",1], ["Female",2]] %>
+   <br>
+   <br>
+   <br>
+  <%= form.label :type, "type" %>
+  <%= form.select :type, [["User",1], ["Admin", 2], ["Owner",3]] %>
+  <br>
+  <br><br>
+  <%= form.submit "Create" %>
+<% end %>
