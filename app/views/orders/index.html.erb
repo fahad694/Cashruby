@@ -1,4 +1,6 @@
+<%= link_to "Create Order", new_order_path %>
 <% @orders.each do |order| %>
+<br>
   <%= label_tag 'name', 'Name : ' %>
   <%= order.user.name %>
   <br>
