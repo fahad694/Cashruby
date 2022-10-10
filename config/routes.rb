@@ -15,6 +15,7 @@ root "items#index"
     delete :remove_item, on: :member
     post   :charge_payment, on: :member
   end
+  
   resources :users do
     post :create_user, on: :collection 
     get  :user_profile, on: :member

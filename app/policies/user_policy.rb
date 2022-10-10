@@ -1,14 +1,14 @@
 class UserPolicy < ApplicationPolicy
 
   def new?
-    user.role == 'owner'
+    user.owner?
   end
 
   def create_user?
-    user.role == 'owner'
+    user.owner?
   end
 
   def index?
-    user.role == 'owner' || user.role == 'admin'
+    user.owner? || user.admin?
   end
 end

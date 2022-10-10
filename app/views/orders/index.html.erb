@@ -1,24 +1,17 @@
 <%= link_to "Create Order", new_order_path %>
-<% @orders.each do |order| %>
-<br>
+<% @orders.each do |order| %><br>
   <%= label_tag 'name', 'Name : ' %>
-  <%= order.user.name %>
-  <br>
+  <%= order.user.name %><br>
   <%= label_tag 'total_price', 'Total Price : ' %>
-  <%= order.total_price %>
-  <br>
+  <%= order.total_price %><br>
   <%= label_tag 'discount_percentage', 'Discount Percentage : ' %>
-  <%= order.discount_percentage %>
-  <br>
+  <%= order.discount_percentage %><br>
   <%= label_tag 'dicounted_value', 'Discounted value : ' %>
-  <%= order.discounted_value %>
-  <br>
+  <%= order.discounted_value %><br>
   <%= label_tag 'total_discount', 'Total discount : ' %>
-  <%= order.total_discount %>
-  <br>
+  <%= order.total_discount %><br>
   <%= label_tag 'state', 'State : ' %>
-  <%= order.state %>
-  <br>
+  <%= order.state %><br>
   <%= label_tag 'created_at', 'Created at : ' %>
   <%= order.created_at %>
 <% end %>

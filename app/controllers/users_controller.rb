@@ -23,6 +23,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # get /users/:id
   def user_profile
     respond_to do |format|
       format.html
@@ -40,7 +41,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    binding.pry
     params.require(:user).permit( :name, :email, :password, :address, :phone, :date_of_birth, :gender )
   end
 end
