@@ -1,4 +1,4 @@
-<%= form_with model: @user do |form| %>
+<%= form_with url: create_user_users_path(@user), model: @user do |form| %>
   <%= form.label :name, "Name: " %>
   <%= form.text_field :name %>
   <br>
@@ -30,13 +30,8 @@
   <br>
   <br>
   <%= form.label :gender, "Gender" %>
-  <%= form.select :gender,[["Male",1], ["Female",2]] %>
+  <%= form.select :gender,[["Male","male"], ["Female","female"]] %>
    <br>
    <br>
-   <br>
-  <%= form.label :type, "type" %>
-  <%= form.select :type, [["User",1], ["Admin", 2], ["Owner",3]] %>
-  <br>
-  <br><br>
   <%= form.submit "Create" %>
 <% end %>

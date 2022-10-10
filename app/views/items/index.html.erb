@@ -1,5 +1,7 @@
 <br>
+<% if current_user.admin? || current_user.owner?%>
 <%= link_to "New", new_item_path %> 
+<% end%>
 <br>
 <% @items.each do |item| %>
   Item name : <%= item.name %>

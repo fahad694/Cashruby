@@ -13,13 +13,19 @@
 <body>
   <nav class="navbar">
     <%= link_to "Home", root_path, class: 'navbar_logo' %>
-     <%= link_to "Categories", categories_path, class: 'navbar_logo' %>
-     <%= link_to "SubCategory", sub_categories_path, class: 'navbar_logo' %>
-     <%= link_to "Order", new_order_path, class: 'navbar_logo' %>
-     <%= link_to "User", users_path, class: 'navbar_logo' %>
-     <% if user_signed_in? %>
-       <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'navbar_logo' %>
-     <% end %>
+      <% if user_signed_in?%>
+        <% if current_user.owner? || current_user.admin?  %>
+          <%= link_to "User", users_path, class: 'navbar_logo' %>
+          <%= link_to "Categories", categories_path, class: 'navbar_logo' %>
+          <%= link_to "SubCategory", sub_categories_path, class: 'navbar_logo' %>
+        <% end %>
+      <% end %>
+      <%= link_to "Order", orders_path, class: 'navbar_logo' %>
+      <%= link_to "profile", user_profile_user_path(current_user), class: 'navbar_logo' %>
+      <% if user_signed_in? %>
+        <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'navbar_logo' %>
+       <%= current_user.email %>
+      <% end %>
     </nav>
   <%= render partial: '/layouts/flash_messages' %>
   <%= yield %>

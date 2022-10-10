@@ -11,8 +11,7 @@ class OrdersController < ApplicationController
 
   # POST /orders
   def create
-    @user = User.first
-    @order = Order.create!( customer_id: @user.id, state: "cart" )
+    @order = Order.create!( customer_id: current_user.id, state: "cart" )
     if @order.valid?
       flash[:notice] = 'successfull Created'
       redirect_to order_path(@order)
@@ -24,7 +23,7 @@ class OrdersController < ApplicationController
 
   # GET /orders
   def index
-    @orders = Order.all.includes(:user)
+    @orders = policy_scope(Order)
     respond_to do |format|
       format.html
     end
@@ -32,6 +31,7 @@ class OrdersController < ApplicationController
   
   # GET /orders/:id 
   def show
+    authorize(@order)
     @order_items = @order.order_items
     respond_to do |format|
       format.html
