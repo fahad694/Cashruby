@@ -19,7 +19,6 @@ class OrdersController < ApplicationController
       flash[:notice] = @order.errors.full_messages
       render :new  
     end
-    binding.pry
   end
 
   # GET /orders
