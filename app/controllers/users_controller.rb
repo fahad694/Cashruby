@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       flash[:notice] = 'successfull created'
       redirect_to users_path
     else
-      flash[:notice] = @user.errors.full_messages
+      flash[:error] = @user.errors.full_messages
       render :new
     end
   end

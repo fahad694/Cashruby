@@ -51,8 +51,8 @@ class OrdersController < ApplicationController
         @order.recalculate_total_price
       end
     rescue ActiveRecord::RecordInvalid => e
-    valid = false
-    errors = [e.message]
+      valid = false
+      errors = [e.message]
     end
     if valid
       flash[:message] = 'Item successfully added'
