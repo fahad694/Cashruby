@@ -1,10 +1,29 @@
-<%= link_to 'New', new_sub_category_path %>
-  <% @sub_categories.each do | sub_category| %>
-  <p>Sub category &nbsp Category</p>
-  <%= sub_category.title %>
-  <%= sub_category.category.title %>
-  <%= link_to 'Show', sub_category_path(sub_category) %>
-  <%= link_to 'Edit', edit_sub_category_path(sub_category) %>
-  <%= link_to 'Delete',sub_category_path(sub_category),method: :delete %>
-  <br>
-<% end %>
+<%= link_to 'New', new_sub_category_path, class:"btn btn-outline-secondary m-3" %>
+<div class="m-3">
+  <table class="table table-bordered table-secondary border-secondary">
+    <tr>
+      <th>#</th>
+      <th>Sub category </th>
+      <th>Category </th>
+      <th ></th>
+    </tr>
+    <% @sub_categories.each do | sub_category| %>
+    <tr>
+      <td>
+        <%= sub_category.id %>
+      </td>
+      <td>
+        <%= sub_category.title %>
+      </td>
+      <td>
+        <%= sub_category.category.title %>
+      </td>
+      <td>
+        <%= link_to 'Show', sub_category_path(sub_category), class:"btn btn-primary" %>
+        <%= link_to 'Edit', edit_sub_category_path(sub_category), class:"btn btn-primary"  %>
+        <%= link_to 'Delete',sub_category_path(sub_category), method: :delete, class:"btn btn-primary" %>
+      </td>
+      <% end %>
+    </tr>
+  </table>
+</div>

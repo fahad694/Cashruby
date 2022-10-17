@@ -1,42 +1,76 @@
-<%= label_tag 'name', 'Name : ' %>
-  <%= @item.name %>
-<br><br>
-<%= label_tag 'price', 'Price : ' %>
-  <%= @item.price %>
-<br><br>
-<%= label_tag 'quantity', 'Qunatity : ' %>
-  <%= @item.quantity %>
-<br><br>
-<%=label_tag 'sub_category_title', 'Sub category : ' %> 
-  <%= @item.sub_category.title %>
-<br><br>
-<%= label_tag 'category_title', 'Category : ' %>
-  <%= @item.category.title %>
-<br>
-<br>
+<%# card of Item  %>
+<div class="card m-3" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">  <%= @item.name %> </h5>
+    <div class="mt-3">
+      <%= label_tag 'price', 'Price : ' %>
+      <%= @item.price %>
+    </div>
+    <div class="mt-3">
+      <%= label_tag 'quantity', 'Qunatity : ' %>
+      <%= @item.quantity %>
+      </div>
+    <div class="mt-3">
+      <%=label_tag 'sub_category_title', 'Sub category : ' %> 
+      <%= @item.sub_category.title %>
+    </div>
+    <div class="mt-3">
+      <%= label_tag 'category_title', 'Category : '  %>
+      <%= @item.category.title %>
+    </div>
+  </div>
+</div>
 
-<%= form_with url: add_stock_item_path(@item) do |form| %>
-<br> 
- <br>
- <%= form.label :quantity, "Quantity" %>
-  <%= form.number_field :quantity %>
-  <%= form.submit "Add stock" %>
-  <% end %>
-  <br>
-  <br>
-  <br>
-<%= form_with url: remove_stock_item_path(@item) do |form| %>
-<br> 
- <br>
- <%= form.label :quantity, "Quantity" %>
-  <%= form.number_field :quantity %>
-  <%= form.submit "remove stock" %>
-  <% end %>
-<br>
-<br>
-<br> 
-  <% @line_items.each do |items| %>
-<p>item</p>
-  <%= items.item.name %>
-  <%= items.quantity %>
+<%# add stock modal  %>
+<% if current_user.admin? || current_user.owner? %>
+  <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#addstockModal">
+    Add Stock
+  </button>
+  <div class="modal fade" id="addstockModal" tabindex="-1" aria-labelledby="addstockModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addstockModalLabel">Add stock</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <%= form_with url: add_stock_item_path(@item) do |form| %>
+          <div class="modal-body d-flex justify-content-center">
+            <%= form.label :quantity, "Quantity" %>
+            <%= form.number_field :quantity, class:"text_field form-control no-border" %>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
+          <%= form.submit "Add", class:"btn btn-primary" %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <%# modal %>
+  <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#removestockModal">
+    Remove Stock
+  </button>
+  <div class="modal fade" id="removestockModal" tabindex="-1" aria-labelledby="removestockModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="removestockModalLabel">Remove stock</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <%= form_with url: remove_stock_item_path(@item) do |form| %>
+          <div class="modal-body d-flex justify-content-center">
+            <%= form.label :quantity, "Quantity" %>
+            <%= form.number_field :quantity, class:"text_field form-control no-border" %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
+            <%= form.submit "remove", class:"btn btn-primary" %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>

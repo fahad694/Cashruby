@@ -1,5 +1,11 @@
-<%= form_with model: @category do |form| %>
-  <%= form.label :title, "Title" %>
-  <%= form.text_field :title %>
-  <%= form.submit @category.persisted? ? 'Update' : 'Create' %>
-<% end %>
+<div class="category_form container d-flex justify-content-center mt-4">
+  <div class="container d-flex justify-content-center mt-3">
+    <%= form_with model: @category do |form| %>
+      <%= form.label :title, "Title" %>
+      <%= form.text_field :title, class:"text-field form-control no-border" %>
+      <div class="container d-flex justify-content-center mt-3">
+      <%= form.submit @category.persisted? ? 'Update' : 'Create', class:"btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

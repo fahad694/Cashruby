@@ -4,6 +4,7 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   def new
     @category = Category.new
+    authorize(@category)
     respond_to do |format|
       format.html
     end
@@ -24,6 +25,7 @@ class CategoriesController < ApplicationController
   # GET /categories
   def index
     @categories = Category.all
+    authorize(@categories)
     respond_to do |format|
       format.html
     end
@@ -31,6 +33,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/:id
   def show
+    authorize(@category)
     respond_to do |format|
       format.html
     end
@@ -38,6 +41,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/:id/edit
   def edit
+    authorize(@category)
     respond_to do |format|
       format.html
     end
@@ -57,6 +61,7 @@ class CategoriesController < ApplicationController
 
   # Delete /Categories/:id
   def destroy
+    authorize(@category)
     @category.destroy
     if @category.destroyed?
       flash[:notice] = 'successfull deleted'

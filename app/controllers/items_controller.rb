@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :load_item, only: [ :show, :edit, :update, :destroy, :add_stock, :remove_stock ]
 
   # GET /items
@@ -12,6 +13,7 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = Item.new
+    authorize(@item)
     load_data_for_form
     respond_to do |format|
       format.html
@@ -27,7 +29,6 @@ class ItemsController < ApplicationController
         @item.quantity = 0
         @item.save!
         @line_item = LineItem.create!(quantity: params.dig(:item, :quantity), item_id:@item.id)
-        
         @item.recalculate_current_quantity!
       end
     rescue ActiveRecord::RecordInvalid => e
@@ -74,7 +75,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  #  DELETE /items/:id
+  #  POST /items/:id
   def remove_stock
     valid = true
     begin
@@ -99,6 +100,7 @@ class ItemsController < ApplicationController
 
   # GET /items/:id/edit
   def edit
+    authorize(@item)
     load_data_for_form
   end
 
@@ -117,6 +119,7 @@ class ItemsController < ApplicationController
 
   # DELETE /items/:id
   def destroy  
+    authorize(@item)
     @item.destroy
     if @item.destroyed?
       flash[:notice] = 'Item successfully Deleted'

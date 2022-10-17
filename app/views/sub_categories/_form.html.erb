@@ -1,8 +1,17 @@
-<%= form_with model: @sub_category do |form| %>
-  <%= form.label :title, "Sub Category" %> 
-  <%= form.text_field :title %>
-  <%= form.select(:category_id, options_for_select(@categories.map do |category|
-    [category.title, category.id]
-    end)) %>
-  <%= form.submit @sub_category.persisted? ? 'Update' : 'Create' %>
-<% end %>
+<div class=" sub_category_form container d-flex justify-content-center mt-5 rounded-2">
+  <div class="container d-flex justify-content-center mt-5">  
+    <%= form_with model: @sub_category do |form| %>
+      <div>
+        <%= form.label :title, "Sub Category" %> 
+        <%= form.text_field :title, class:"text_field form-control no-border" %>
+      </div>
+      <div>
+        <%=form.label :Category, class:"mt-4"%>
+        <%= form.select(:category_id, options_for_select(@categories.map do |category|
+        [category.title, category.id]
+        end),{},{:class => "form_select"}) %>
+      </div>
+      <%= form.submit @sub_category.persisted? ? 'Update' : 'Create', class:"create_subcategory_button rounded-2 form-control  mt-5" %>
+    <% end %>
+  </div>
+</div>

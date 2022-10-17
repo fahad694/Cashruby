@@ -1,78 +1,150 @@
 <!-- for user(customer) -->
-<%= form_with url: add_item_order_path(@order) do |form| %>
-  <input type="text" name="search" id="js-search">
-  <%= javascript_tag do %>
-    var tf = new Tokenfield({
-      el: document.querySelector('#js-search'),
-      remote: {
-        url: "/items/search.json",
-      }
-    });
-  <% end %><br><br>
-  <%= form.label :quantity, "Quantity" %>
-  <%= form.number_field :quantity %><br><br>
-  <%= form.submit "Add" %>
-<% end %>
-
-<% @order_items.each do |order_item| %>
-  <table class="table_border">
-    <tr class="table_border">
-      <th class="table_border">Item</th>
-      <th class="table_border">Price</th>
-      <th class="table_border">Quantity</th>
-    </tr>
-    <tr class="table_border">
-      <td class="table_border">
-        <%= order_item.item.name %>
-      </td>
-      <td class="table_border">
-        <%= order_item.price %>
-      </td>
-      <td class="table_border">
-        <%=  order_item.quantity %>
-      </td>
-      <td class="table_border">
-        <%= link_to "Cancel", remove_item_order_path(@order, order_item_id: order_item.id), method: :delete, class: "link_button" %>
-      </td>
-    </tr><br><br><br>
-  </table>
-<% end %><br><br>
-
-  <!-- for admin only -->
-<%= form_with url: charge_payment_order_path(@order) do |form| %>
-  <% if current_user.admin? || current_user.owner?%>
-    <%= form.label :paid_amount, "Amount : " %>
-    <%= form.number_field :paid_amount%> 
-  <% end %><br><br>
-  <%= form.label :total_price, "Total amount : " %> 
-  <%= @order.total_price %><br><br>
-  <%= form.label :paid_amount, "Paid :" %>
-  <%= @order.paid_amount %><br><br>
-  <%= form.label :paid_amount, "Remaining : " %>
-  <%= (@order.total_price).to_i  - (@order.paid_amount).to_i %><br><br>
-  <% if current_user.admin? || current_user.owner?%>
-    <%= form.submit "Paid" %>
-  <% end %>
-<% end %>
-
-<!-- Payment History -->
-<!-- for all -->
-<div>
-  Payment Histories
-  <table class = "table_border">
-    <tr class = "table_border">
-      <th class="table_border">Amount</th>
-      <th class="table_border">Paid On</th>
-    </tr>
-    <% @order.payments.each do |payment| %>
-      <tr class="table_border">
-        <td class="table_border" >
-          $<%= payment.paid_amount %> --
+<div class="add_item_container container d-flex justify-content-center mt-3 mb-3 rounded-2">
+  <div class="field_bar container d-flex justify-content-center ">
+    <%= form_with url: add_item_order_path(@order) do |form| %>
+      <span>
+        Search Item
+        <div class="search_container mb-3 ">
+          <input type="text" name="search" id="js-search">
+        </div>
+      </span>
+      <%= javascript_tag do %>
+        var tf = new Tokenfield({
+          el: document.querySelector('#js-search'),
+          remote: {
+            url: "/items/search.json",
+          }
+        });
+      <% end %>
+      <%= form.label :quantity, "Quantity" %>
+      <%= form.number_field :quantity, class:"text_field form-control no-border" %>
+      <div class="conatainer d-flex justify-content-center mt-3">
+      <%= form.submit "Add", class:"btn btn-secondary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="m-2">
+  <table class="table table-bordered table-secondary ">
+      <tr >
+        <th >Item</th>
+        <th >Price</th>
+        <th >Quantity</th>
+        <th></th>
+      </tr>
+    <% @order_items.each do |order_item| %>
+      <tr >
+        <td >
+          <%= order_item.item.name %>
         </td>
-        <td class="table_border">
-          <%= payment.created_at %>
+        <td >
+          <%= order_item.price %>
+        </td>
+        <td >
+          <%=  order_item.quantity %>
+        </td>
+        <td >
+          <%= link_to "Cancel", remove_item_order_path(@order, order_item_id: order_item.id), method: :delete, class: "btn btn-primary" %>
         </td>
       </tr>
     <% end %>
   </table>
+</div>
+
+<!-- for admin only -->
+<button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#paymentModal">
+  Charge Amount
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="paymentModalLabel">Balance</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-flex justify-content-center">
+        <div class="payment_container container d-flex justify-content-center rounded-2"> 
+        <div class="container d-flex justify-content-center"> 
+        <%= form_with url: charge_payment_order_path(@order) do |form| %>
+          <% if current_user.admin? || current_user.owner?%>
+            <div>
+            <%= form.label :paid_amount, "Amount", class:"mt-3 text-black" %><br>
+            <%= form.number_field :paid_amount, class:"text_field rounded-1 form-control no-border"%>
+            <% end %>
+            </div>
+            <div class="mt-3">
+            <%= form.label :total_price, "Total amount : ", class:"text-black" %> 
+            <%= @order.total_price %>
+            </div>
+            <div class="mt-2">
+            <%= form.label :paid_amount, "Paid :", class:"text-black mt-2" %>
+            <%= @order.paid_amount %>
+            </div>
+            <div class="mt-2">
+            <%= form.label :paid_amount, "Remaining : ", class:"text-black" %>
+            <%= (@order.total_price).to_i  - (@order.paid_amount).to_i %>
+            </div>
+            <% if current_user.admin? || current_user.owner? %>
+            <div class=" mt-4">
+            </div>
+          <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
+        <%= form.submit "Pay", class:"btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<%# modal of payment history %>
+</div>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymenthistoryModal">
+    Payment History
+  </button>
+<div>
+
+<!-- Modal -->
+<div class="modal fade" id="paymenthistoryModal" tabindex="-1" aria-labelledby="paymenthistoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="paymenthistoryModalLabel">Payment History</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class = "table table_size">
+          <tr class >
+            <th >Amount</th>
+            <th >Paid On</th>
+          </tr>
+          <% @order.payments.each do |payment| %>
+            <tr >
+              <td  >
+                $<%= payment.paid_amount %> --
+              </td>
+              <td >
+                <%= payment.created_at %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>

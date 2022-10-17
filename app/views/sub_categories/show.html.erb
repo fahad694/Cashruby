@@ -1,3 +1,10 @@
-Sub category : <%= @sub_category.title %>
-<br>
-Category     :  <%= @sub_category.category.title %> 
+<div class="show_category_container container d-flex justify-content-center rounded-2 mt-5">
+  <div class="field">
+    <%= label_tag 'name', "Sub Category :" %>
+    <%= @sub_category.title %><br>
+  </div>
+  <div>
+    <%= label_tag 'name', "Category :" %>
+    <%= @sub_category.category.title %> 
+  </div>
+</div>

@@ -15,8 +15,10 @@
  */
 
 .navbar {
-  background-color: lightgray;
+  background-color:rgba(252, 206, 4, 0.911);
   height: 50px;
+  flex-direction: row;
+  display: flex;
 }
 
 .navbar_logo {
@@ -26,4 +28,146 @@
 .table_border {
   border: 1px solid black;
   border-collapse: collapse;
+}
+
+/* login page */
+.login_container{
+  background:linen;
+  width: 25rem;
+  height: 40rem;
+  margin-bottom: 5rem;
+  border-radius: 1rem;
+  
+}
+
+.fields{ 
+  color: aliceblue;
+  width: 20rem;
+  text-align: center;
+  height: 32rem;
+}
+
+.login_button{
+  width: 300px;
+  background:	#ff1493 ;
+  height: 40px;
+}
+
+.text_align{
+  margin-top: 10px;
+}
+
+.text_field{
+  width: 300px;
+  height: 40px;
+}
+
+/* sign_up page */
+.sign_up_container{
+  background:linen;
+  width: 25rem;
+  height: 50rem;
+  margin-bottom: 5rem;
+  border-radius: 1rem;
+
+}
+
+.form_select{
+  width: 8rem;
+  border-radius: 1.5rem;
+  background-color: #E1FFB1;
+}
+
+.signup_button{
+  width: 300px;
+  background:	#ff1493 ;
+  height: 40px;
+}
+
+/* new_user */
+.new_user_container{
+  background:#bfe6c1;
+  width: 25rem;
+  height: 50rem;
+  margin-bottom: 5rem;
+  border-radius: 1rem;
+}
+
+.create_user_button{
+  width: 300px;
+  background: #436857;
+  height: 40px;
+  border-color: rgba(54, 68, 40, 0.521);
+}
+
+/* subcategory */
+.create_subcategory_button{
+  width: 300px;
+  background: #a3be88;
+  height: 40px;
+  border-color: rgb(188, 247, 129);
+}
+
+.sub_category_form{
+  background:#798861;
+  width: 25rem;
+  height: 25rem;
+}
+
+.show_category_container{
+  background:#E1FFB1;
+  width: 25rem;
+  height: 20rem;
+  margin-bottom: 5rem;
+}
+
+/* order */
+.payment_container{
+  width: 20rem;
+  height: 15rem;
+  background-color: bisque;
+}
+.payment_button{
+  width: 300px;
+  background:steelblue;
+  height: 40px;
+  border-color: darkslategrey;
+}
+ 
+.search_container{
+  width: 18.7rem!important;
+} 
+
+.add_item_container{
+  width: 30rem;
+  height: 20rem;
+  background-color: rgb(151, 137, 137);
+}
+
+/* items */
+.new_item_container{
+height: 30rem;
+width: 25rem; 
+border-color: black;
+background-color: aliceblue;
+}
+
+.new_item_button{
+  width: 300px;
+  background-color: cornflowerblue;
+  height: 40px;
+  border-color: darkslategrey;
+}
+
+.select_options{
+  width: 8rem;
+  border-radius: 1.5rem;
+}
+
+.ul li{
+  list-style: none;
+  display: inline;
+  justify-content: space-between;
+  height: 70px;
+  align-items: center;
 }

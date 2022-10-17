@@ -1,21 +1,25 @@
-<br>
+<%if user_signed_in? %>
 <% if current_user.admin? || current_user.owner?%>
-<%= link_to "New", new_item_path %> 
+<%= link_to "New", new_item_path, class:"btn btn-outline-secondary m-3" %> 
 <% end%>
-<br>
+<% end %>
+<%# cards of items %>
 <% @items.each do |item| %>
-  Item name : <%= item.name %>
-  <br>
-  Item quantity : <%= item.quantity %>
-  <br>
-  Item Price : <%= item.price %>
-  <br>
-  SubCategory : <%= item.sub_category.title %>
-  <br>
-  Categpory :<%= item.category.title %>
-  <%= link_to "Show", item_path(item) %>
-  <%= link_to "Edit", edit_item_path(item) %>
-  <%= link_to "Delete",item_path(item), method: :delete %>
-  <br>
-  <br>
+  <div class="card m-3" style="width: 18rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"> <%= item.name %> </h5>
+    Quantity : <%= item.quantity %><br>
+    Price : <%= item.price %><br>
+    SubCategory : <%= item.sub_category.title %><br>
+    Categpory :<%= item.category.title %><br>
+    <%= link_to "Show", item_path(item), class:"btn btn-primary" %>
+    <% if user_signed_in? %>
+    <% if current_user.admin? || current_user.owner? %>
+      <%= link_to "Edit", edit_item_path(item), class:"btn btn-primary" %>
+      <%= link_to "Delete", item_path(item), method: :delete, class:"btn btn-primary" %>
+    <% end %>
+    <% end %>
+    </div>
+  </div>  
 <% end %>

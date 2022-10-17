@@ -1,32 +1,36 @@
-<%= link_to "new", new_user_path %>
-<br>
-<br>
-<table class="table_border">
-  <tr class="table_border">
-    <th class="table_border">Name</th>
-    <th class="table_border">Email</th>
-    <th class="table_border">Gender</th>
-    <th class="table_border">Type</th>
-  </tr>
-  <% @users.each do |user| %>
-  <tr >
-  <td class="table_border">
-    <%= user.name %>
-  </td>
-  <td class="table_border">
-    <%= user.email %>
-  </td>
-  <td class="table_border">
-    <%= user.gender %>
-  </td>
-  <td class="table_border">
-    <%= user.role %>
-  </td>
-  <td>
-    <%= link_to "view" %>
-    <%= link_to "Edit" %>
-    <%= link_to "Delete" %>
-  </td>
-  </tr>
-<% end %>
-</table>
+<%= link_to "new", new_user_path, class:"btn btn-outline-secondary m-3" %>
+<div class="m-3">
+  <table class="table table-secondary table-bordered border-secondary">
+    <tr>
+      <th >#</th>
+      <th >Name</th>
+      <th >Email</th>
+      <th >Gender</th>
+      <th >Type</th>
+      <th ></th>
+    </tr>
+    <% @users.each do |user| %>
+      <tr >
+        <td>
+        <%= user.id %>
+        </td>
+        <td >
+          <%= user.name %>
+        </td>
+        <td >
+          <%= user.email %>
+        </td>
+        <td >
+          <%= user.gender %>
+        </td>
+        <td >
+          <%= user.role %>
+        </td>
+        <td>
+          <%= link_to "Edit", edit_user_path(user), class:"btn btn-primary" %>
+          <%= link_to "Delete", user_path(user), method: :delete, class:"btn btn-primary" %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

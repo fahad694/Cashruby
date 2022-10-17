@@ -10,6 +10,6 @@ class OrderPolicy < ApplicationPolicy
   end
   
   def show?
-    user.admin? || (record.customer_id == user.id)
+    user.owner? || user.admin? || (record.customer_id == user.id)
   end
 end

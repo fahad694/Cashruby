@@ -1,11 +1,12 @@
-<%= link_to 'New', new_category_path %>
-<ul>
-  <% @categories.each do |category| %>
-    <li>
-      <%= category.title %>
-      <%= link_to 'Show', category_path(category) %>
-      <%= link_to 'Edit', edit_category_path(category) %>
-      <%= link_to 'Delete', category_path(category), method: :delete %>
-    </li>
-  <% end %>
-</ul>
+<%= link_to 'New', new_category_path, class:"btn btn-outline-secondary m-3" %>
+<%# categories cards %>
+<% @categories.each do |category| %>
+  <div class="card m-3" style="width: 15rem;">
+    <div class="card-body">
+      <h5 class="card-title"> <%= category.title %> </h5>
+      <%= link_to 'Show', category_path(category), class:"btn btn-primary" %>
+      <%= link_to 'Edit', edit_category_path(category), class:"btn btn-primary" %>
+      <%= link_to 'Delete', category_path(category), method: :delete, class:"btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

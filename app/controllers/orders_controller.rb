@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.create!( customer_id: current_user.id, state: "cart" )
     if @order.valid?
-      flash[:notice] = 'successfull Created'
+      flash[:alert] = 'successfull Created'
       redirect_to order_path(@order)
     else
       flash[:notice] = @order.errors.full_messages
@@ -95,7 +95,7 @@ class OrdersController < ApplicationController
       flash[:notice] = 'Payment successfull'
       redirect_to order_path(@order)
     else
-      flash[:notice] = errors
+      flash[:errors] = errors
       render :show 
     end
   end

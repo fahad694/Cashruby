@@ -8,20 +8,23 @@
           <div>
         <% end %>
       <% else %>
-        <div>
+        <div class="alert alert-danger" role="alert">
           <%= flash[:error] %>
         </div>
       <% end %>
-    <% elsif flash[:notice].present? %>
-      <% if flash[:notice].is_a?(Array) %>
-        <% flash[:notice].each do |error_message| %>
-          <div>
+    <% elsif flash[:alert].present? %>
+      <% if flash[:alert].is_a?(Array) %>
+        <% flash[:alert].each do |error_message| %>
+          <div class="alert" role="alert">
             <%= error_message %>
           <div>
         <% end %>
       <% else %>
-        <div>
-          <%= flash[:notice] %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong><%= flash[:alert] %></strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
         </div>
       <% end %>
     <% end %>
