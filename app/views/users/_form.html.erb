@@ -1,0 +1,41 @@
+
+<div class=" new_user_container container d-flex justify-content-center mt-5">
+  <div class="container d-flex justify-content-center">
+    <%= form_with url: create_user_users_path(@user), model: @user do |form| %>
+      <% if @user.persisted? %>
+      <p style="font-weight:bold; color:black; font-size:1.5rem">Edit Profile </p>
+      <% else %>
+      <p style="font-weight:bold; color:black; font-size:1.5rem">Create New User </p>
+      <% end %>
+      <div>
+        <%= form.label :name, "Name", class:"mt-4" %><br>
+        <%= form.text_field :name, class:"text_field form-control no-border" %>
+      </div>
+      <div>
+        <%= form.label :emal, "Email", class:"mt-4"  %><br>
+        <%= form.text_field :email, class:"text_field form-control no-border" %>
+      </div>
+      <div>
+        <%= form.label :password, "Password", class:"mt-4" %><br>
+        <%= form.text_field :password, class:"text_field form-control no-border" %>
+      </div>
+      <div>
+        <%= form.label :address, "Address", class:"mt-4" %><br>
+        <%= form.text_area  :address, class:"text_field form-control no-border" %>
+      </div>
+      <div>
+        <%= form.label :date_of_birth, "Date of Birth", class:"mt-4" %><br>
+        <%= form.date_field :date_of_birth, class:"text_field form-control no-border" %>
+      </div>
+      <div>
+        <%= form.label :phone, "Phone", class:"mt-4" %><br>
+        <%= form.telephone_field :phone, class:"text_field form-control no-border" %>
+      </div>
+      <div>
+        <%= form.label :gender, "Gender", class:"mt-4" %>
+        <%= form.select :gender,[["Male","male"], ["Female","female"]],{}, { :class => "form_select" } %>
+      </div>
+      <%= form.submit  @user.persisted? ? 'Update' : 'Create', class:"create_user_button mt-5 form-control no-border text-white" %>
+    <% end %>
+  </div>
+</div>
