@@ -7,6 +7,12 @@ class Item < ApplicationRecord
   validates  :quantity, numericality: { greater_than_or_equal_to: 0 }
   validates  :price, numericality: { greater_than_or_equal_to: 0 }
 
+  after_initialize :init
+
+  def init
+    self.quantity ||= 0.0
+  end
+  
   def recalculate_current_quantity! 
     item_quantity = line_items.pluck(:quantity).sum
     self.update!(quantity: item_quantity)
