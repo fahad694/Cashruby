@@ -8,8 +8,8 @@ RSpec.describe Item, type: :model do
     
   context "Item Creation" do
     it "Item is created successfull" do
-    	@item = Item.create(category: @category, name: 'khoye wali kulfi', sub_category: @sub_category, price: 10)
-    	expect(@item.valid?).to eq true
+      @item = Item.create(category: @category, name: 'khoye wali kulfi', sub_category: @sub_category, price: 10)
+      expect(@item.valid?).to eq true
     end
   end
 
